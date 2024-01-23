@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add to Mqtt Topic</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function validateForm() {
+            var topic = document.forms["mqttForm"]["topic"].value;
+            var table = document.forms["mqttForm"]["table"].value;
+            var columns = document.forms["mqttForm"]["columns"].value;
+            if (topic == "" || table == "" || columns == "") {
+                alert("Topic, Table and Columns must be filled out");
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+<a href="/mqtt">Go to Mqtt</a>
+<form action="/mqtt/addPost" method="get" name="mqttForm" onsubmit="return validateForm()">
+    <label for="topic">topic:</label><br>
+    <input id="topic" name="topic" type="text"><br>
+    <label for="table">table:</label><br>
+    <input id="table" name="table" type="text"><br>
+    <label for="columns">columns:</label><br>
+    <input id="columns" name="columns" type="text"><br>
+    <label for="parse">parse:</label><br>
+    <input id="parse" name="parse" type="text"><br>
+    <label for="share">share:</label><br>
+    <input id="share" name="share" type="text"><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
