@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Table</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+<a href="/">Go to Index</a>
+<a href="/mqtt/addPage">Add to Mqtt Topic</a>
+<a href="/mqtt/reload">Reload Mqtt Topic</a>
+<table>
+    <tr>
+        <th>Topic</th>
+        <th>Table</th>
+        <th>Columns</th>
+        <th>Parse</th>
+        <th>Share</th>
+        <th>MessageParse2Sql</th>
+        <th>CollectState</th>
+        <th>WriteState</th>
+        <th>Count</th>
+        <th>OP</th>
+    </tr>
+    <tr th:each="value : ${values}">
+        <td th:text="${value.topic}"></td>
+        <td th:text="${value.table}"></td>
+        <td th:text="${value.columns}"></td>
+        <td th:text="${value.parse}"></td>
+        <td th:text="${value.share}"></td>
+        <td th:text="${value.getMessageParse2SqlName}"></td>
+        <td th:text="${value.messageCollectRunnable.state}"></td>
+        <td th:text="${value.messageParseWriteRunnable.state}"></td>
+        <td th:text="${value.messageCount}"></td>
+        <td>
+            <a th:href="@{/mqtt/start(topic=${value.topic})}">start</a>
+            <a th:href="@{/mqtt/stop(topic=${value.topic})}">stop</a>
+            <a th:href="@{/mqtt/remove(topic=${value.topic})}">remove</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
